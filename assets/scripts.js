@@ -1,15 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Smooth Scroll for Navigation Links
-    const navLinks = document.querySelectorAll('nav a[href^="#"]'); // Only select internal links
-
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault(); // Prevent default anchor click behavior
-            const targetId = this.getAttribute('href'); // Get the href value (e.g., "#about-section")
-            const targetElement = document.querySelector(targetId); // Find the corresponding section
-
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
             if (targetElement) {
-                // Scroll to the target element smoothly
                 targetElement.scrollIntoView({ behavior: 'smooth' });
             }
         });
@@ -18,19 +15,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Instagram-like profile logo zoom
     const logo = document.getElementById('profileLogo');
     const overlay = document.getElementById('profileOverlay');
-
     if (logo && overlay) {
         logo.addEventListener('click', function(e) {
             e.preventDefault();
             overlay.classList.add('active');
         });
         overlay.addEventListener('click', function(e) {
-            // Only close if clicked outside the large image
             if (e.target === overlay) {
                 overlay.classList.remove('active');
             }
         });
-        // Optional: ESC key closes overlay
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 overlay.classList.remove('active');
@@ -44,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(res => res.json())
         .then(posts => {
           const grid = document.getElementById('blogGrid');
+          if (!grid) return;
           grid.innerHTML = '';
           posts.forEach(post => {
             const card = document.createElement('div');
@@ -97,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Toggle comments
-    function toggleComments(postId) {
+    window.toggleComments = function(postId) {
       const el = document.getElementById(`comments-${postId}`);
       const btn = document.getElementById(`toggle-comments-${postId}`);
       if (el.style.display === 'none') {
@@ -110,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Submit comment
-    function submitComment(e, postId) {
+    window.submitComment = function(e, postId) {
       e.preventDefault();
       const input = e.target.elements['comment'];
       fetch(`/api/posts/${postId}/comments`, {
@@ -149,32 +144,74 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Hide upload form and manager by default
-    document.getElementById('adminUploadForm').style.display = 'none';
-    document.getElementById('blogManagerCard').style.display = 'none';
+    const adminUploadForm = document.getElementById('adminUploadForm');
+    const blogManagerCard = document.getElementById('blogManagerCard');
+    if (adminUploadForm) adminUploadForm.style.display = 'none';
+    if (blogManagerCard) blogManagerCard.style.display = 'none';
 
-    document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      fetch('/api/login', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          username: document.getElementById('adminUsername').value,
-          password: document.getElementById('adminPassword').value
+    const adminLoginForm = document.getElementById('adminLoginForm');
+    if (adminLoginForm) {
+      adminLoginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        fetch('/api/login', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            username: document.getElementById('adminUsername').value,
+            password: document.getElementById('adminPassword').value
+          })
         })
-      })
-      .then(res => {
-        if (!res.ok) throw new Error('Login failed');
-        return res.json();
-      })
-      .then(() => {
-        document.getElementById('adminLoginBox').style.display = 'none';
-        document.getElementById('adminUploadForm').style.display = '';
-        document.getElementById('blogManagerCard').style.display = '';
-        fetchMyBlogs();
-      })
-      .catch(() => alert('Invalid credentials'));
-    });
+        .then(res => {
+          if (!res.ok) throw new Error('Login failed');
+          return res.json();
+        })
+        .then(() => {
+          if (document.getElementById('adminLoginBox')) document.getElementById('adminLoginBox').style.display = 'none';
+          if (adminUploadForm) adminUploadForm.style.display = '';
+          if (blogManagerCard) blogManagerCard.style.display = '';
+          if (typeof fetchMyBlogs === 'function') fetchMyBlogs();
+        })
+        .catch(() => alert('Invalid credentials'));
+      });
+    }
+
+    // Typing Animation
+    const text = "Hi, I'm Anudip Saha!";
+    const typeTarget = document.getElementById("typewriter");
+    const cursor = document.getElementById("typewriter-cursor");
+    let i = 0;
+
+    function typeWriter() {
+      if (!typeTarget) return;
+      if (i < text.length) {
+        typeTarget.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 70);
+      } else {
+        if (cursor) cursor.style.animation = "blink 1s steps(1) infinite";
+      }
+    }
+    if (typeTarget) typeWriter();
+
+    // Dark Mode Toggle
+    const toggleBtn = document.getElementById('darkModeToggle');
+    if (toggleBtn) {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const savedMode = localStorage.getItem('theme');
+      if (savedMode === 'dark' || (!savedMode && prefersDark)) {
+        document.body.classList.add('dark-mode');
+        toggleBtn.textContent = '☀️';
+      } else {
+        toggleBtn.textContent = '🌙';
+      }
+      toggleBtn.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        const isDark = document.body.classList.contains('dark-mode');
+        toggleBtn.textContent = isDark ? '☀️' : '🌙';
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      });
+    }
 
     // Initial render
-    renderPosts();
+    if (typeof renderPosts === 'function') renderPosts();
 });
