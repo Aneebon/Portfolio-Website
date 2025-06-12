@@ -25,6 +25,11 @@
                     <li><a href="blog.html">Blog</a></li>
                 </ul>
             </nav>
+            <button id="darkModeToggle" aria-label="Toggle dark mode"
+              class="ml-4 px-3 py-2 rounded-lg bg-gray-200 text-gray-800 hover:bg-gray-300 transition"
+              style="position:absolute;top:1.5rem;right:2rem;z-index:50;">
+              🌙
+            </button>
         </header>
         <div id="profileOverlay" class="profile-overlay">
             <img src="assets/Profile.jpg" alt="Profile Large" class="profile-large">
@@ -33,7 +38,10 @@
         <main>
             <section id="hero-section" class="section hero-section">
                 <div class="container hero-content">
-                    <h1 class="text-3xl font-bold">Hi, I'm Anudip Saha!</h1>
+                    <h1 class="text-5xl font-bold" style="color:#2563eb;">
+  <span id="typewriter"></span>
+  <span id="typewriter-cursor" style="display:inline-block;width:1ch;">|</span>
+</h1>
                     <p class="hero-role">Aspiring ML Engineer & Web Developer</p>
                     <p class="hero-tagline">Crafting intelligent systems and seamless web experiences to solve real-world problems.</p>
                     <div class="hero-buttons">
@@ -224,5 +232,6 @@
     </div>
 
     <script src="assets/scripts.js"></script>
+    <!-- Dark Mode Toggle Button -->
 </body>
 </html>
