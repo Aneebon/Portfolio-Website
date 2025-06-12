@@ -468,6 +468,12 @@ a:hover {
     margin-top: 0.5rem;
 }
 
+/* Keyframes */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .container {
@@ -542,4 +548,44 @@ a:hover {
     .contact-links {
         flex-direction: column;
     }
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background: #18181b !important;
+  color: #f3f4f6 !important;
+}
+body.dark-mode .section,
+body.dark-mode .container,
+body.dark-mode .bg-gray-50,
+body.dark-mode .bg-light {
+  background: #232336 !important;
+  color: #f3f4f6 !important;
+}
+body.dark-mode .text-gray-900,
+body.dark-mode .text-gray-700,
+body.dark-mode .text-gray-600 {
+  color: #e0e7ef !important;
+}
+body.dark-mode .bg-white {
+  background: #232336 !important;
+}
+body.dark-mode .btn-primary,
+body.dark-mode .btn-secondary,
+body.dark-mode .bg-blue-600,
+body.dark-mode .bg-blue-700,
+body.dark-mode .bg-gray-900 {
+  background: #2563eb !important;
+  color: #fff !important;
+}
+body.dark-mode .footer {
+  background: #18181b !important;
+  color: #e0e7ef !important;
+}
+body.dark-mode .profile-overlay {
+  background: rgba(24,24,27,0.95) !important;
+}
+body.dark-mode .hero-role,
+body.dark-mode .hero-tagline {
+  color: #a5b4fc !important;
 }
