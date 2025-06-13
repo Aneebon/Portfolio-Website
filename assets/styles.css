@@ -17,6 +17,7 @@
     --color-border: #e5e7eb; /* Subtle border color */
     --color-shadow: rgba(0, 0, 0, 0.05); /* Light shadow */
     --color-shadow-md: rgba(0, 0, 0, 0.1); /* Medium shadow */
+    --color-shadow-lg: rgba(0, 0, 0, 0.15); /* Larger shadow */
 
     /* Typography */
     --font-sans: 'Inter', sans-serif;
@@ -49,7 +50,26 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth; /* For smooth navigation */
+    overflow-x: hidden; /* Prevent horizontal scroll from parallax/tilt */
 }
+
+/* Custom Scrollbar Styling */
+body::-webkit-scrollbar {
+    width: 10px;
+}
+body::-webkit-scrollbar-track {
+    background: var(--color-background-light-alt);
+    border-radius: 10px;
+}
+body::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 10px;
+    border: 2px solid var(--color-background-light-alt);
+}
+body::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
+}
+
 
 /* General Layout & Containers */
 .container {
@@ -63,7 +83,23 @@ body {
 .section {
     padding-top: var(--space-3xl);
     padding-bottom: var(--space-3xl);
+    /* opacity: 0; REMOVED default hidden, will use specific reveal animations */
+    /* transform: translateY(20px); REMOVED default hidden */
+    /* transition: opacity 0.6s ease-out, transform 0.6s ease-out; REMOVED default hidden */
 }
+
+/* Base class for elements that will animate on scroll */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 
 .bg-light {
     background-color: var(--color-background-light-alt);
@@ -85,7 +121,22 @@ h2 {
     font-size: clamp(2rem, 5vw, 3rem);
     text-align: center;
     margin-bottom: var(--space-2xl);
+    /* New styles for reveal animation */
+    overflow: hidden; /* Hide overflow for reveal effect */
 }
+
+.section-heading-inner {
+    display: inline-block; /* Essential for transform origin */
+    transform: translateY(100%); /* Start off-screen */
+    opacity: 0;
+    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.8s ease-out;
+}
+
+.section.is-visible .section-heading-inner {
+    transform: translateY(0);
+    opacity: 1;
+}
+
 
 h3 {
     font-size: clamp(1.5rem, 4vw, 2rem);
@@ -118,7 +169,7 @@ a:hover {
     font-size: var(--font-size-base);
     cursor: pointer;
     border: 1px solid transparent;
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .btn-primary {
@@ -128,6 +179,8 @@ a:hover {
 
 .btn-primary:hover {
     background-color: #2563eb; /* Darker blue */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(37, 99, 235, 0.3); /* Enhanced shadow */
 }
 
 .btn-secondary {
@@ -140,6 +193,26 @@ a:hover {
 .btn-secondary:hover {
     background-color: var(--color-primary);
     color: var(--color-text-light);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(59, 130, 246, 0.15); /* Enhanced shadow */
+}
+
+/* Accent Utility Classes */
+.accent {
+  color: #ffd54f;
+}
+.bg-accent {
+  background: #ffd54f;
+  color: #1a202c;
+}
+.btn-accent {
+  background: #ffd54f;
+  color: #1a202c;
+  box-shadow: 0 0 16px 0 #ffd54f55;
+  transition: box-shadow 0.2s;
+}
+.btn-accent:hover {
+  box-shadow: 0 0 32px 0 #ffd54f99;
 }
 
 /* Navbar */
@@ -150,6 +223,14 @@ a:hover {
     background-color: var(--color-surface);
     box-shadow: 0 2px 4px var(--color-shadow);
     padding: var(--space-md) 0;
+    transition: all 0.3s ease-in-out; /* Smooth transition for background/padding changes */
+}
+
+#navbar.scrolled {
+    padding: var(--space-sm) 0; /* Smaller padding when scrolled */
+    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent background */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Stronger shadow */
+    backdrop-filter: blur(5px); /* Frosted glass effect */
 }
 
 .nav-content {
@@ -181,23 +262,68 @@ a:hover {
     text-decoration: none;
 }
 
+.nav-links a.active {
+    color: var(--color-primary);
+    position: relative;
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Adjust as needed */
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-primary);
+    border-radius: 2px;
+    animation: underlineGrow 0.3s forwards;
+}
+
+@keyframes underlineGrow {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
 .nav-links .btn {
     margin-left: var(--space-md); /* Override default btn margin */
 }
 
 /* Hero Section */
 .hero-section {
+    position: relative;
+    overflow: hidden;
     min-height: 70vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     background: linear-gradient(135deg, var(--color-background-light), var(--color-background-light-alt));
-    padding-top: var(--space-3xl); /* Add back section padding for consistency */
+    padding-top: var(--space-3xl);
     padding-bottom: var(--space-3xl);
 }
 
+/* Parallax Background for Hero */
+.hero-background-parallax {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.1), transparent 50%),
+                radial-gradient(circle at bottom right, rgba(107, 114, 128, 0.1), transparent 50%);
+    animation: pulseBackground 15s infinite alternate ease-in-out;
+    z-index: 0;
+    transform: translateY(0); /* Base transform */
+    will-change: transform; /* Hint for browser optimization */
+}
+
+
+@keyframes pulseBackground {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
 .hero-content {
+    position: relative; /* Ensures content stays above pseudo-element */
+    z-index: 1;
     max-width: 800px;
 }
 
@@ -238,7 +364,6 @@ a:hover {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--space-xl);
     margin-top: var(--space-xl);
-    /* justify-content: center; REMOVED from here */
     width: 100%; /* Important for grid within flex to take full width */
 }
 
@@ -248,6 +373,22 @@ a:hover {
     box-shadow: 0 4px 8px var(--color-shadow);
     padding: var(--space-xl);
     text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    will-change: transform; /* Hint for performance with tilt effect */
+}
+
+/* Tilt Effect Base Style */
+.tilt-card {
+    transform-style: preserve-3d; /* Enable 3D transforms */
+    transition: transform 0.25s ease-out; /* Smooth transition for tilt */
+}
+
+.tilt-card:hover {
+    box-shadow: 0 15px 30px var(--color-shadow-lg); /* Stronger shadow on hover */
+}
+
+.skill-category-card:hover {
+    box-shadow: 0 10px 20px var(--color-shadow-md); /* Stronger shadow */
 }
 
 .skill-category-title {
@@ -279,7 +420,6 @@ a:hover {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: var(--space-2xl);
-    /* justify-content: center; REMOVED from here */
     width: 100%; /* Important for grid within flex to take full width */
 }
 
@@ -291,6 +431,12 @@ a:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* Pushes links to bottom */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    will-change: transform; /* Hint for performance with tilt effect */
+}
+
+.project-card:hover {
+    box-shadow: 0 10px 20px var(--color-shadow-md); /* Stronger shadow */
 }
 
 .project-title {
@@ -588,4 +734,28 @@ body.dark-mode .profile-overlay {
 body.dark-mode .hero-role,
 body.dark-mode .hero-tagline {
   color: #a5b4fc !important;
+}
+body.dark-mode #navbar.scrolled {
+    background-color: rgba(35, 35, 54, 0.95) !important; /* Darker transparent background */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+body.dark-mode .nav-links a.active {
+    color: #a5b4fc !important; /* Lighter blue for dark mode active link */
+}
+
+body.dark-mode .nav-links a.active::after {
+    background-color: #a5b4fc !important;
+}
+
+/* Dark mode custom scrollbar */
+body.dark-mode::-webkit-scrollbar-track {
+    background: #1f2937;
+}
+body.dark-mode::-webkit-scrollbar-thumb {
+    background: #60a5fa; /* Lighter blue for dark mode */
+    border: 2px solid #1f2937;
+}
+body.dark-mode::-webkit-scrollbar-thumb:hover {
+    background: #3b82f6;
 }
