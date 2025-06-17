@@ -37,7 +37,7 @@ nav a {
 }
 
 nav a:hover {
-  color: #00bfff;
+  color: #950000;
 }
 
 .hero {
@@ -75,7 +75,7 @@ nav a:hover {
 }
 
 .hero h1 span {
-  color: #00bfff;
+  color: #950000;
 }
 
 .hero p {
@@ -87,7 +87,7 @@ nav a:hover {
 
 .tagline {
   font-size: 1.5rem;
-  color: #00bfff;
+  color: #950000;
   margin-bottom: 2rem;
 }
 
@@ -120,7 +120,7 @@ nav a:hover {
 
 .project-headline {
   font-weight: 600;
-  color: #00bfff;
+  color: #950000;
   margin-bottom: 0.5rem;
 }
 
@@ -141,7 +141,7 @@ nav a:hover {
 
 .skills-list li {
   background: #181818;
-  color: #00bfff;
+  color: #950000;
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 1rem;
@@ -171,7 +171,7 @@ nav a:hover {
 
 .work-card a {
   text-decoration: none;
-  color: #00bfff;
+  color: #950000;
 }
 
 .work-card h3, .work-card p {
@@ -179,7 +179,7 @@ nav a:hover {
 }
 
 .work-card:hover {
-  box-shadow: 0 8px 32px #00bfff44;
+  box-shadow: 0 8px 32px #950000;
   background: #222;
 }
 
@@ -226,7 +226,7 @@ nav a:hover {
 .bio h3 {
   font-size: 1.5rem;         /* Larger subheadings */
   margin-top: 2.5rem;
-  color: #00bfff;
+  color: #ff4400;
 }
 
 .bio ul {
@@ -241,7 +241,7 @@ nav a:hover {
 }
 
 .bio a {
-  color: #00bfff;
+  color: #950000;
   text-decoration: underline;
 }
 
@@ -314,7 +314,7 @@ footer {
 .contact-detail {
   margin-top: 0.5rem;
   font-size: 0.95rem;
-  color: #00bfff;
+  color: #950000;
   word-break: break-all;
 }
 
