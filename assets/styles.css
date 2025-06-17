@@ -204,41 +204,29 @@ nav a:hover {
 }
 
 .about {
-  padding: 4rem 5vw;
-  text-align: center;
-  background: #000;
-}
-
-.about h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  color: #fff;
-}
-
-.about p {
-  font-size: 1.2rem;
-  color: #b0b0b0;
-  max-width: 600px;
-  margin: 0 auto;
+  padding: 6rem 8vw;         /* More padding for space */
+  background: #111;          /* Or your preferred background */
 }
 
 .bio {
-  max-width: 800px;
+  max-width: 900px;          /* Wider content area */
   margin: 0 auto;
-  text-align: left;
+  font-size: 2.1rem;        /* Larger font size */
+  line-height: 2;            /* More line spacing */
   color: #b0b0b0;
-  font-size: 1.1rem;
+}
+
+.about h2 {
+  font-size: 2.8rem;         /* Larger section title */
+  margin-bottom: 2.5rem;
+  color: #fff;
+  text-align: center;
 }
 
 .bio h3 {
-  color: #fff;
-  margin-top: 2rem;
-  margin-bottom: 0.5rem;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-size: 1.5rem;         /* Larger subheadings */
+  margin-top: 2.5rem;
+  color: #00bfff;
 }
 
 .bio ul {
