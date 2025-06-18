@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ANUDIP SAHA | Portfolio</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Devicon CDN for icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
 </head>
 <body>
   <!-- 1. Hero Section: The Hook -->
@@ -12,101 +14,141 @@
     <div class="logo">
       <img src="Profile.jpg" alt="Anudip Saha" class="profile-logo">
     </div>
-    <nav>
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
+    <nav class="navbar">
+      <a href="#home" class="active">Home</a>
+      <a href="#skills">Skills & Tools</a>
+      <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
-  <section class="hero">
-    <h1>Hello, I'm <span>ANUDIP SAHA</span></h1>
-    <p class="tagline">Transforming complex challenges into elegant, intelligent digital experiences.</p>
-    <div class="scroll-indicator">▼ Scroll Down to Discover My Work ▼</div>
-  </section>
+  <div class="main-container">
+    <section class="hero" id="home">
+      <div class="hero-bg-graphic"></div>
+      <h1>HELLO, I'M <span>ANUDIP SAHA</span></h1>
+      <p class="one-liner">Aspiring ML Engineer passionate about creating smart, user-focused digital experiences.</p>
+      <p class="tagline">Turning complex data into seamless digital journeys.</p>
+      <div class="scroll-indicator">▼ Scroll Down to Discover My Work ▼</div>
+    </section>
 
-  <!-- 2. Featured Work: The Showcase -->
-  <section class="work" id="work">
-    <h2>Innovations I've Crafted</h2>
-    <div class="work-grid">
-      <a class="work-card" href="https://github.com/Aneebon/Smart-Waste-Management-System" target="_blank">
-        <h3>Smart AI-Powered Waste Management System</h3>
-        <p>
-          A hackathon-built smart dustbin that uses AI to automate waste sorting, track bin fill levels in real time, and connect communities through a waste exchange platform. Features include auto-segregation, live dashboard, geolocation mapping, and reward-based leaderboards. Built in 24 hours and demoed at BIS NEXUS<span class="ref">[#]</span>.
-        </p>
-      </a>
-      <a class="work-card" href="https://github.com/Aneebon/researchAI" target="_blank">
-        <h3>Research Gap Finder &amp; Idea Generator</h3>
-        <p>
-          An AI tool that fetches research papers from arXiv and CORE, analyzes them with Google Gemini AI, and highlights research gaps and underexplored topics. Instantly generates new project ideas and research questions through a simple, no-code web interface<span class="ref">[#]</span>.
-        </p>
-      </a>
-      <a class="work-card" href="https://github.com/Aneebon/University-Chat-Bot" target="_blank">
-        <h3>University Bot Portal</h3>
-        <p>
-          A smart chatbot platform for automating exam schedules, certificate generation, and leave requests for students and faculty. Powered by a custom API and MongoDB, it streamlines campus tasks and reduces paperwork. Built with Flask, HTML/CSS/JS, and PDF generation<span class="ref">[#]</span>.
-        </p>
-      </a>
-    </div>
-  </section>
+    <!-- 2. Featured Work: The Showcase -->
+    <section class="work" id="projects">
+      <h2>Innovations I've Crafted</h2>
+      <div class="work-grid">
+        <a class="work-card" href="https://github.com/Aneebon/Smart-Waste-Management-System" target="_blank">
+          <h3>Smart AI-Powered Waste Management System</h3>
+          <p>
+            A hackathon-built smart dustbin that uses AI to automate waste sorting, track bin fill levels in real time, and connect communities through a waste exchange platform. Features include auto-segregation, live dashboard, geolocation mapping, and reward-based leaderboards. Built in 24 hours and demoed at BIS NEXUS<span class="ref">[#]</span>.
+          </p>
+        </a>
+        <a class="work-card" href="https://github.com/Aneebon/researchAI" target="_blank">
+          <h3>Research Gap Finder &amp; Idea Generator</h3>
+          <p>
+            An AI tool that fetches research papers from arXiv and CORE, analyzes them with Google Gemini AI, and highlights research gaps and underexplored topics. Instantly generates new project ideas and research questions through a simple, no-code web interface<span class="ref">[#]</span>.
+          </p>
+        </a>
+        <a class="work-card" href="https://github.com/Aneebon/University-Chat-Bot" target="_blank">
+          <h3>University Bot Portal</h3>
+          <p>
+            A smart chatbot platform for automating exam schedules, certificate generation, and leave requests for students and faculty. Powered by a custom API and MongoDB, it streamlines campus tasks and reduces paperwork. Built with Flask, HTML/CSS/JS, and PDF generation<span class="ref">[#]</span>.
+          </p>
+        </a>
+      </div>
+    </section>
 
-  <!-- 3. About Me: The Narrative -->
-  <section class="about" id="about">
-    <h2>Behind the Code</h2>
-    <div class="bio">
-      <p>
-        Driven by an insatiable curiosity, I'm Anudip Saha, a second-year B.Tech student passionately exploring how Artificial Intelligence and robust web solutions can reshape our world.
-      </p>
-      <p>
-        I thrive on tackling real-world problems and enjoy building user-centric, intelligent solutions that truly make a difference.
-      </p>
-      <h3>What I'm Currently Learning</h3>
-      <ul>
-        <li>Math-based ML (Linear Regression, Gradient Descent, etc.)</li>
-        <li>Blockchain + AI integrations</li>
-        <li>Building an AI-powered university office assistant bot</li>
-      </ul>
-      <h3>Skills &amp; Tools</h3>
-      <ul class="skills-list">
-        <li>Python, C</li>
-        <li>HTML, CSS, JavaScript, Tailwind CSS</li>
-        <li>Flask, REST APIs, PostgreSQL</li>
-        <li>Machine Learning, NLP, LLMs</li>
-        <li>API Integration, UI/UX Design</li>
-      </ul>
-      <h3>Fun Fact</h3>
-      <p>
-        I am building a site where people can barter their items in a way like they are going through their instagram.
-      </p>
-      <h3>Motto</h3>
-      <p>
-        “Craft with code, conquer with curiosity. 💡”
-      </p>
-    </div>
-  </section>
+    <!-- 3. About Me: The Narrative -->
+    <section class="about" id="skills">
+      <h2>Behind the Code</h2>
+      <div class="bio">
+        <p>
+          Driven by an insatiable curiosity, I'm Anudip Saha, a second-year B.Tech student passionately exploring how Artificial Intelligence and robust web solutions can reshape our world.
+        </p>
+        <p>
+          I thrive on tackling real-world problems and enjoy building user-centric, intelligent solutions that truly make a difference.
+        </p>
+        <h3>What I'm Currently Learning</h3>
+        <ul>
+          <li>Math-based ML (Linear Regression, Gradient Descent, etc.)</li>
+          <li>Blockchain + AI integrations</li>
+          <li>Building an AI-powered university office assistant bot</li>
+        </ul>
+        <h3>Skills &amp; Tools</h3>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <i class="devicon-python-plain colored skill-icon"></i>
+            <div class="skill-name">Python</div>
+            <div class="skill-bar"><div class="skill-level" style="width:95%"></div></div>
+          </div>
+          <div class="skill-card">
+            <i class="devicon-java-plain colored skill-icon"></i>
+            <div class="skill-name">Java</div>
+            <div class="skill-bar"><div class="skill-level" style="width:85%"></div></div>
+          </div>
+          <div class="skill-card">
+            <i class="devicon-c-plain colored skill-icon"></i>
+            <div class="skill-name">C</div>
+            <div class="skill-bar"><div class="skill-level" style="width:80%"></div></div>
+          </div>
+          <div class="skill-card">
+            <i class="devicon-databricks-plain colored skill-icon"></i>
+            <div class="skill-name">Data Analysis</div>
+            <div class="skill-bar"><div class="skill-level" style="width:90%"></div></div>
+          </div>
+          <div class="skill-card">
+            <i class="devicon-tensorflow-original colored skill-icon"></i>
+            <div class="skill-name">Machine Learning</div>
+            <div class="skill-bar"><div class="skill-level" style="width:88%"></div></div>
+          </div>
+          <div class="skill-card">
+            <i class="devicon-numpy-original colored skill-icon"></i>
+            <div class="skill-name">NLP</div>
+            <div class="skill-bar"><div class="skill-level" style="width:80%"></div></div>
+          </div>
+        </div>
+        <h3>Fun Fact</h3>
+        <p>
+          I am building a site where people can barter their items in a way like they are going through their instagram.
+        </p>
+        <h3>Motto</h3>
+        <p>
+          “Craft with code, conquer with curiosity. 💡”
+        </p>
+      </div>
+    </section>
 
-  <!-- 4. Contact: The Connection Point -->
-  <section class="contact" id="contact">
-    <h2>Let's Build Something Amazing Together</h2>
-    <p class="contact-intro">
-      🚀 Whether you want to collaborate, have a question, or just want to say hi—I'm always excited to connect with fellow innovators!
-    </p>
-    <div class="contact-cards">
-      <a href="mailto:anudipsaha44@gmail.com" class="contact-card" target="_blank">
-        <span class="contact-icon">📧</span>
-        <span>Email Me</span>
-        <span class="contact-detail">anudipsaha44@gmail.com</span>
-      </a>
-      <a href="https://github.com/Aneebon" class="contact-card" target="_blank">
-        <span class="contact-icon">🌐</span>
-        <span>GitHub</span>
-        <span class="contact-detail">github.com/Aneebon</span>
-      </a>
-      <!-- Add more cards for LinkedIn, Twitter, etc. if you want -->
-    </div>
-    <p class="contact-cta">
-      💡 <strong>Fun Prompt:</strong> Tell me your wildest tech idea or your favorite AI meme when you reach out!
-    </p>
-  </section>
+    <!-- 4. Contact: The Connection Point -->
+    <section class="contact" id="contact">
+      <h2>Let's Build Something Amazing Together</h2>
+      <p class="contact-intro">
+        🚀 Whether you want to collaborate, have a question, or just want to say hi—I'm always excited to connect with fellow innovators!
+      </p>
+      <div class="contact-cards">
+        <a href="mailto:anudipsaha44@gmail.com" class="contact-card" target="_blank">
+          <span class="contact-icon">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Email" style="width:2.2rem;height:2.2rem;">
+          </span>
+          <span>Email Me</span>
+          <span class="contact-detail">anudipsaha44@gmail.com</span>
+        </a>
+        <a href="https://github.com/Aneebon" class="contact-card" target="_blank">
+          <span class="contact-icon">
+            <i class="devicon-github-original-wordmark" style="font-size:2.2rem; color:#fff;"></i>
+          </span>
+          <span>GitHub</span>
+          <span class="contact-detail">github.com/Aneebon</span>
+        </a>
+        <a href="https://www.linkedin.com/in/anudip-saha-76ab33309/" class="contact-card" target="_blank">
+          <span class="contact-icon">
+            <i class="devicon-linkedin-plain colored" style="font-size:2.2rem; color:#0A66C2;"></i>
+          </span>
+          <span>LinkedIn</span>
+          <span class="contact-detail">Linkedin</span>
+        </a>
+      </div>
+      <p class="contact-cta">
+        
+      </p>
+    </section>
+  </div>
   <footer>
     <p>&copy; 2025 Anudip Saha</p>
     <div class="rocket-launch" title="Click me!">
@@ -114,13 +156,13 @@
     </div>
   </footer>
   <script>
-  const rocket = document.querySelector('.rocket-launch');
-  rocket.addEventListener('click', () => {
-    rocket.classList.add('launched');
-    setTimeout(() => {
-      rocket.classList.remove('launched');
-    }, 1300);
-  });
-</script>
+    const rocket = document.querySelector('.rocket-launch');
+    rocket.addEventListener('click', () => {
+      rocket.classList.add('launched');
+      setTimeout(() => {
+        rocket.classList.remove('launched');
+      }, 1300);
+    });
+  </script>
 </body>
 </html>
