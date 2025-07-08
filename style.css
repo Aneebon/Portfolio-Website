@@ -61,7 +61,7 @@ header {
 
 nav a {
   position: relative;
-  color: #950000;
+  color: #fff;
   text-decoration: none;
   font-size: 1.15rem;
   font-weight: 700;
@@ -88,7 +88,6 @@ nav a::after {
   border-radius: 2px;
 }
 
-nav a:hover::after,
 nav a.active::after {
   transform: scaleX(1);
 }
@@ -213,50 +212,41 @@ nav a.active::after {
 
 .work-grid {
   display: flex;
-  flex-wrap: wrap;
   gap: 2rem;
-  justify-content: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1rem 0;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
 .work-card {
+  flex: 0 0 auto; /* Prevent shrinking */
+  min-width: 350px; /* Fixed minimum width */
+  max-width: 400px; /* Maximum width */
   background: #181818;
   border-radius: 12px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.5);
   padding: 2rem;
-  max-width: 340px;
-  text-align: center;
+  text-align: left;
   transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
   border: 1px solid #222;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
   display: block;
-}
-
-.work-card a {
-  text-decoration: none;
-  color: #950000;
-}
-
-.work-card h3, .work-card p {
-  color: #fff;
+  scroll-snap-align: start;
 }
 
 .work-card:hover {
   box-shadow: 0 8px 32px #950000;
   background: #222;
-}
-
-.work-card img {
-  width: 100%;
-  border-radius: 12px;
-  margin-bottom: 1rem;
-  background: #222;
+  transform: translateY(-4px);
 }
 
 .work-card h3 {
   font-size: 1.3rem;
-  margin: 1rem 0 0.5rem 0;
+  margin: 0 0 1rem 0;
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -265,6 +255,26 @@ nav a.active::after {
 .work-card p {
   color: #b0b0b0;
   font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Hide scrollbar but keep functionality */
+.work-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.work-grid::-webkit-scrollbar-track {
+  background: #333;
+  border-radius: 4px;
+}
+
+.work-grid::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 4px;
+}
+
+.work-grid::-webkit-scrollbar-thumb:hover {
+  background: #888;
 }
 
 .about {
